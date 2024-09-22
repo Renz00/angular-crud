@@ -1,0 +1,41 @@
+<div>
+  <div class="d-flex flex-row flex-wrap justify-content-center align-items-center gap-4">
+    <button class="btn btn-success" style="border-radius:0;" (click)="toggleAddPopup()">Add Post</button>
+ </div>
+  <div class="d-flex flex-row flex-wrap justify-content-center align-items-center gap-4 my-5">
+     <!-- [post] is used to pass post data to PostComponent similar to Vue props-->
+    <app-post
+      *ngFor="let post of posts"
+      [post]="post"
+      (edit)="toggleEditPopup($event)"
+      (delete)="onConfirmDelete($event)"
+    ></app-post>
+  </div>
+  <div class="d-flex flex-row flex-wrap justify-content-center align-items-center gap-4">
+    <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [rows]="perPage"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    />
+ </div>
+
+</div>
+
+<!-- [post] is used when passing a variable -->
+<!-- header does not have braces because it passes a string value -->
+<!-- (confirm) accepts an emitted $event from edit-popup component -->
+<app-edit-popup
+  [post]="selectedPost"
+  [display]="displayEditPopup"
+  (confirm)="onConfirmEdit($event)"
+  (cancel)="onClosePopup($event)"
+  header="Edit Product"
+></app-edit-popup>
+
+<app-edit-popup
+  [display]="displayAddPopup"
+  (confirm)="onConfirmAdd($event)"
+  (cancel)="onClosePopup($event)"
+  header="Add Product"
+></app-edit-popup>

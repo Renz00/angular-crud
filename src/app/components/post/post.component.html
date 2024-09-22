@@ -1,0 +1,30 @@
+<p-card [style]="{width: '18rem', height: '20rem'}">
+  <ng-template pTemplate="header">
+    <div style="width:290px; height:150px;">
+      <img src="https://picsum.photos/280/170" class="img-fluid rounded-top" alt="Post Thumbnail">
+    </div>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <h6 class="text-center text-truncate py-2">{{ post.title }}</h6>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="d-flex flex-row gap-2">
+      <a href="" class="btn btn-primary w-50" style="border-radius: 0px;">View</a>
+      <button class="btn btn-warning w-50" style="border-radius: 0px;" (click)="editPost()">Edit</button>
+
+      <!-- #deleteButton is used for ViewChild to locate this element in DOM -->
+      <button
+        class="btn btn-danger w-50"
+        style="border-radius: 0px;"
+        (click)="deletePost()"
+        #deleteButton
+        >Delete</button>
+
+    </div>
+  </ng-template>
+</p-card>
+
+<p-confirmPopup />
+
+
+
